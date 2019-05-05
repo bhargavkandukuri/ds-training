@@ -1,0 +1,8 @@
+Week 3
+__________________________
+
+Supervised Learning
+__________________________
+
+Algorithms to cover: Decision Trees, Random Forest, bagging and boosting
+

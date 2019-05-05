@@ -1,0 +1,8 @@
+Week 6
+__________________________
+
+Probability and Statistics - 2
+__________________________
+
+Algorithms to cover: NB, GMM, EM
+

@@ -1,0 +1,8 @@
+Week 2
+__________________________
+
+Supervised Learning
+__________________________
+
+Algorithms to cover: KNN, LR, SVM
+
