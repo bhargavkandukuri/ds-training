@@ -1,10 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import pickle
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
+
 
 def generate_data(size, add_noise = False):
     '''
@@ -65,6 +67,22 @@ def apply_regression(X,y,max_degree):
         mse_validation.append(mean_squared_error(y_cv,y_cv_prediction))
 
     plot_errors(mse_training,mse_validation, print_error=True)
+    best_degree = -1 
+    min_error = float('inf')
+    for index,error in enumerate(mse_validation):
+        if error < min_error:
+            min_error = error
+            best_degree = index
+    print('best_degree =', best_degree)
+    get_best_model(best_degree=best_degree,X_train=X_train,y_train=y_train)
+
+def get_best_model(best_degree,X_train,y_train):
+    best_poly_features = PolynomialFeatures(degree=best_degree)
+    X_train_best_polynomial = best_poly_features.fit_transform(X_train)
+    print('Feature names', best_poly_features.get_feature_names())
+    lr_model_best = LinearRegression()
+    lr_model_best.fit(X_train_best_polynomial,y_train)
+    print('coefficients', lr_model_best.coef_)
     
 def plot_errors(mse_training,mse_validation,print_error=False):
     # print(len(mse_training))
@@ -78,7 +96,8 @@ def plot_errors(mse_training,mse_validation,print_error=False):
             print(e1,e2)
     plt.show()
 
+
 if __name__ == '__main__':
-    X,y = generate_data(size=5000,add_noise=True)
+    X,y = generate_data(size=5000,add_noise=False)
     # visualize_data(X,y,in_3d=True,print_values=False)
-    apply_regression(X,y,max_degree=50)
+    apply_regression(X,y,max_degree=10)
