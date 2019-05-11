@@ -99,5 +99,5 @@ def plot_errors(mse_training,mse_validation,print_error=False):
 
 if __name__ == '__main__':
     X,y = generate_data(size=5000,add_noise=False)
-    # visualize_data(X,y,in_3d=True,print_values=False)
-    apply_regression(X,y,max_degree=10)
+    visualize_data(X,y,in_3d=False,print_values=False)
+    # apply_regression(X,y,max_degree=10)
